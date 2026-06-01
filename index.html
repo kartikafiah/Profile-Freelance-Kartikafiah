@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartika Afiah — Business Admin & Finance Freelancer</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue-50: #E6F1FB; --blue-100: #B5D4F4; --blue-200: #85B7EB;
+    --blue-400: #378ADD; --blue-600: #185FA5; --blue-800: #0C447C; --blue-900: #042C53;
+    --teal-50: #E1F5EE; --teal-400: #1D9E75; --teal-600: #0F6E56;
+    --gray-50: #F7F9FC; --gray-100: #EEF2F7; --gray-200: #D8E2EE;
+    --gray-400: #7A8BA0; --gray-600: #4A5568; --gray-800: #1A202C;
+    --white: #ffffff;
+    --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px;
+    --shadow: 0 2px 12px rgba(24,95,165,0.08), 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 32px rgba(24,95,165,0.12), 0 2px 8px rgba(0,0,0,0.08);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background: var(--gray-50); color: var(--gray-800); line-height: 1.7; font-size: 15px; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-logo { font-weight: 700; font-size: 16px; color: var(--blue-800); letter-spacing: -0.3px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--gray-600); transition: color .2s; }
+  .nav-links a:hover { color: var(--blue-600); }
+  .nav-cta { background: var(--blue-600); color: white; padding: 8px 20px; border-radius: 99px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background .2s; }
+  .nav-cta:hover { background: var(--blue-800); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 40%, var(--blue-600) 100%);
+    padding: 80px 2rem 90px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-avatar {
+    width: 96px; height: 96px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-200), var(--teal-400));
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 32px; font-weight: 700; color: white;
+    margin-bottom: 20px; border: 4px solid rgba(255,255,255,0.25);
+    position: relative; z-index: 1;
+    letter-spacing: -1px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 42px); font-weight: 700; color: white;
+    letter-spacing: -0.5px; margin-bottom: 8px; position: relative; z-index: 1;
+  }
+  .hero-subtitle {
+    font-size: 17px; color: var(--blue-100); font-weight: 400;
+    margin-bottom: 24px; position: relative; z-index: 1;
+  }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 32px; position: relative; z-index: 1; }
+  .hero-badge {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 6px 14px; border-radius: 99px; font-size: 13px; font-weight: 500;
+  }
+  .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+  .btn-primary { background: white; color: var(--blue-800); padding: 12px 28px; border-radius: 99px; font-size: 15px; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.2); }
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.4); padding: 12px 28px; border-radius: 99px; font-size: 15px; font-weight: 600; text-decoration: none; transition: border-color .2s, background .2s; }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.1); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: white; border-bottom: 1px solid var(--gray-200);
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .stat { text-align: center; padding: 24px 16px; border-right: 1px solid var(--gray-200); }
+  .stat:last-child { border-right: none; }
+  .stat-number { font-size: 26px; font-weight: 700; color: var(--blue-700, var(--blue-600)); letter-spacing: -0.5px; }
+  .stat-label { font-size: 12px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 900px; margin: 0 auto; padding: 48px 2rem; }
+  .section { margin-bottom: 56px; }
+  .section-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--blue-600); margin-bottom: 6px;
+  }
+  .section-heading { font-size: 24px; font-weight: 700; color: var(--gray-800); margin-bottom: 24px; letter-spacing: -0.3px; }
+  .divider { width: 40px; height: 3px; background: var(--blue-400); border-radius: 2px; margin-bottom: 28px; }
+
+  /* ABOUT */
+  .about-card {
+    background: white; border-radius: var(--radius-lg); padding: 32px;
+    box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+  }
+  .about-text { font-size: 15px; line-height: 1.8; color: var(--gray-600); }
+  .about-text p { margin-bottom: 12px; }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-info { display: flex; flex-direction: column; gap: 12px; }
+  .info-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+  .info-icon { width: 32px; height: 32px; background: var(--blue-50); border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--blue-600); font-size: 15px; }
+  .info-label { font-size: 11px; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.04em; }
+  .info-value { font-size: 14px; color: var(--gray-800); font-weight: 500; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .service-card {
+    background: white; border-radius: var(--radius-lg); padding: 24px;
+    box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+    transition: transform .2s, box-shadow .2s;
+  }
+  .service-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+  .service-icon {
+    width: 48px; height: 48px; border-radius: var(--radius-md);
+    background: var(--blue-50); color: var(--blue-600);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px; margin-bottom: 16px;
+  }
+  .service-name { font-size: 16px; font-weight: 700; color: var(--gray-800); margin-bottom: 8px; }
+  .service-desc { font-size: 14px; color: var(--gray-400); line-height: 1.6; margin-bottom: 16px; }
+  .service-tools { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-tag { font-size: 11px; background: var(--blue-50); color: var(--blue-600); padding: 3px 10px; border-radius: 99px; font-weight: 500; }
+  .rate-tag { font-size: 12px; color: var(--teal-600); font-weight: 600; display: block; margin-top: 12px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .skill-group { background: white; border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow); border: 1px solid var(--gray-200); }
+  .skill-group-title { font-size: 13px; font-weight: 700; color: var(--blue-800); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .skill-group-title span { background: var(--blue-50); width: 28px; height: 28px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .skill-item { display: flex; flex-direction: column; gap: 4px; }
+  .skill-label { font-size: 13px; color: var(--gray-600); font-weight: 500; display: flex; justify-content: space-between; }
+  .skill-bar { height: 4px; background: var(--gray-100); border-radius: 99px; overflow: hidden; }
+  .skill-fill { height: 100%; border-radius: 99px; background: var(--blue-400); }
+
+  /* EXPERIENCE */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--gray-200); border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 32px; }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot { position: absolute; left: -28px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--blue-600); border: 3px solid white; box-shadow: 0 0 0 2px var(--blue-200); }
+  .exp-card { background: white; border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow); border: 1px solid var(--gray-200); }
+  .exp-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+  .exp-role { font-size: 16px; font-weight: 700; color: var(--gray-800); }
+  .exp-period { font-size: 12px; color: white; background: var(--blue-600); padding: 3px 10px; border-radius: 99px; font-weight: 500; white-space: nowrap; }
+  .exp-company { font-size: 14px; color: var(--blue-600); font-weight: 600; margin-bottom: 14px; }
+  .exp-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .exp-list li { font-size: 14px; color: var(--gray-600); padding-left: 16px; position: relative; line-height: 1.6; }
+  .exp-list li::before { content: '▸'; position: absolute; left: 0; color: var(--blue-400); font-size: 12px; top: 1px; }
+
+  /* CERTIFICATIONS */
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .cert-card { background: white; border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow); border: 1px solid var(--gray-200); display: flex; align-items: flex-start; gap: 14px; }
+  .cert-icon { width: 40px; height: 40px; border-radius: var(--radius-md); background: linear-gradient(135deg, var(--blue-50), var(--teal-50, #E1F5EE)); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; color: var(--blue-600); }
+  .cert-name { font-size: 14px; font-weight: 600; color: var(--gray-800); margin-bottom: 3px; line-height: 1.4; }
+  .cert-issuer { font-size: 12px; color: var(--teal-600); font-weight: 600; }
+  .cert-year { font-size: 12px; color: var(--gray-400); }
+
+  /* CONTACT */
+  .contact-card {
+    background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
+    border-radius: var(--radius-lg); padding: 48px 40px; text-align: center; color: white;
+  }
+  .contact-card h3 { font-size: 26px; font-weight: 700; margin-bottom: 12px; }
+  .contact-card p { font-size: 16px; opacity: 0.85; margin-bottom: 32px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .contact-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 32px; }
+  .contact-link {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    color: white; padding: 10px 20px; border-radius: 99px; font-size: 14px; font-weight: 500;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+    transition: background .2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.2); }
+
+  /* FOOTER */
+  footer { text-align: center; padding: 28px 2rem; font-size: 13px; color: var(--gray-400); border-top: 1px solid var(--gray-200); background: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .about-card { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .hero { padding: 60px 1.5rem 70px; }
+    .main { padding: 32px 1.25rem; }
+    .contact-card { padding: 32px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-logo">Kartika Afiah</div>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#layanan">Layanan</a></li>
+    <li><a href="#pengalaman">Pengalaman</a></li>
+    <li><a href="#sertifikasi">Sertifikasi</a></li>
+  </ul>
+  <a href="#kontak" class="nav-cta">Hubungi Saya</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-avatar">KA</div>
+  <h1>Kartika Afiah Islamianingsih</h1>
+  <p class="hero-subtitle">Business Admin & Finance Freelancer &nbsp;·&nbsp; Bekasi, Jawa Barat</p>
+  <div class="hero-badges">
+    <span class="hero-badge">⭐ BNSP Certified</span>
+    <span class="hero-badge">📊 5+ Tahun Pengalaman</span>
+    <span class="hero-badge">🛒 E-Commerce Expert</span>
+    <span class="hero-badge">💼 Odoo ERP</span>
+  </div>
+  <div class="hero-actions">
+    <a href="#layanan" class="btn-primary">Lihat Layanan Saya</a>
+    <a href="mailto:kartikafiah@gmail.com" class="btn-outline">Hubungi Saya</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">5+</div>
+    <div class="stat-label">Tahun Pengalaman</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">5</div>
+    <div class="stat-label">Industri Berbeda</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">4</div>
+    <div class="stat-label">Sertifikasi BNSP</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">100%</div>
+    <div class="stat-label">Kerja Mandiri</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- TENTANG -->
+  <section class="section" id="tentang">
+    <p class="section-title">Profil</p>
+    <h2 class="section-heading">Tentang Saya</h2>
+    <div class="divider"></div>
+    <div class="about-card">
+      <div class="about-text">
+        <p>Saya adalah profesional administrasi bisnis dengan pengalaman lebih dari 5 tahun di berbagai industri — mulai dari keuangan, logistik, e-commerce, hingga konstruksi.</p>
+        <p>Terbiasa mengelola keuangan operasional secara end-to-end, administrasi pergudangan, koordinasi lintas divisi, hingga pelayanan pelanggan. Saya dikenal sebagai individu yang teliti, dapat diandalkan, dan adaptif terhadap lingkungan kerja yang dinamis.</p>
+        <p>Pemegang sertifikasi BNSP ganda di bidang Administrasi Profesional dan Tenaga Administrasi Kepegawaian. Terbuka untuk proyek freelance maupun part-time.</p>
+      </div>
+      <div class="about-info">
+        <div class="info-row">
+          <div class="info-icon">📍</div>
+          <div>
+            <div class="info-label">Lokasi</div>
+            <div class="info-value">Bekasi, Jawa Barat</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📧</div>
+          <div>
+            <div class="info-label">Email</div>
+            <div class="info-value">kartikafiah@gmail.com</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">📱</div>
+          <div>
+            <div class="info-label">WhatsApp</div>
+            <div class="info-value">+62 851-5650-3558</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🎓</div>
+          <div>
+            <div class="info-label">Pendidikan</div>
+            <div class="info-value">D3 Administrasi Bisnis — Politeknik LP3I Jakarta</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">🌐</div>
+          <div>
+            <div class="info-label">Bahasa</div>
+            <div class="info-value">Indonesia (Utama) · English B1 (TOEIC 510)</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✅</div>
+          <div>
+            <div class="info-label">Status</div>
+            <div class="info-value" style="color: var(--teal-600); font-weight: 600;">Terbuka untuk Freelance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAYANAN -->
+  <section class="section" id="layanan">
+    <p class="section-title">Yang Saya Tawarkan</p>
+    <h2 class="section-heading">Layanan Freelance</h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">💰</div>
+        <div class="service-name">Admin Keuangan & Pembukuan</div>
+        <div class="service-desc">Rekap transaksi harian, pembuatan invoice, rekonsiliasi kas & bank, laporan hutang piutang, dan kalkulasi insentif karyawan.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Google Sheets</span>
+          <span class="tool-tag">Odoo ERP</span>
+        </div>
+        <span class="rate-tag">💵 Rp 150rb–400rb / proyek</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🛒</div>
+        <div class="service-name">Admin Marketplace</div>
+        <div class="service-desc">Kelola toko Shopee/Tokopedia: upload produk, setting iklan, balas chat, pantau stok, laporan penjualan, dan partisipasi event.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Shopee</span>
+          <span class="tool-tag">Tokopedia</span>
+          <span class="tool-tag">Iklan Berbayar</span>
+        </div>
+        <span class="rate-tag">💵 Rp 500rb–2jt / bulan</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">💼</div>
+        <div class="service-name">Virtual Assistant</div>
+        <div class="service-desc">Penjadwalan, pengarsipan dokumen, koordinasi tim, penyusunan laporan harian, dan manajemen email/komunikasi bisnis.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Ms Office</span>
+          <span class="tool-tag">Google Workspace</span>
+          <span class="tool-tag">Odoo</span>
+        </div>
+        <span class="rate-tag">💵 Rp 1jt–3jt / bulan</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📦</div>
+        <div class="service-name">Admin Gudang & Logistik</div>
+        <div class="service-desc">Stock opname, pencatatan barang masuk/keluar, pembuatan surat jalan, pemantauan pengiriman, dan laporan inventaris.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Stock Opname</span>
+          <span class="tool-tag">Surat Jalan</span>
+          <span class="tool-tag">Rekap Stok</span>
+        </div>
+        <span class="rate-tag">💵 Rp 500rb–1,5jt / proyek</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">📊</div>
+        <div class="service-name">Data Entry & Pelaporan</div>
+        <div class="service-desc">Input data ke sistem, rekap laporan harian/mingguan, pengarsipan dokumen digital, dan pembuatan rekapitulasi penjualan.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Google Sheets</span>
+          <span class="tool-tag">Odoo</span>
+        </div>
+        <span class="rate-tag">💵 Rp 50rb–200rb / jam</span>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <div class="service-name">Admin Purchasing</div>
+        <div class="service-desc">Pengelolaan invoice supplier, seleksi vendor, negosiasi harga, pengadaan material, dan pengarsipan dokumen pembelian.</div>
+        <div class="service-tools">
+          <span class="tool-tag">Vendor Management</span>
+          <span class="tool-tag">Purchase Order</span>
+          <span class="tool-tag">Dokumentasi</span>
+        </div>
+        <span class="rate-tag">💵 Sesuai kesepakatan</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="keahlian">
+    <p class="section-title">Kompetensi</p>
+    <h2 class="section-heading">Keahlian & Tools</h2>
+    <div class="divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title"><span>💻</span> Perangkat Lunak</div>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span class="skill-label">Microsoft Office <span>95%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Google Sheets <span>90%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Odoo ERP <span>80%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">SketchUp <span>60%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:60%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title"><span>💰</span> Keuangan</div>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span class="skill-label">Account Receivable/Payable <span>95%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Pembuatan Invoice <span>98%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:98%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Rekap Kas & Bank <span>95%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Rekonsiliasi Keuangan <span>88%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title"><span>🛒</span> E-Commerce</div>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span class="skill-label">Shopee / Tokopedia <span>92%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Manajemen Iklan <span>85%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Customer Service <span>90%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Manajemen Stok <span>88%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title"><span>📋</span> Operasional</div>
+        <ul class="skill-list">
+          <li class="skill-item">
+            <span class="skill-label">Administrasi Kantor <span>98%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:98%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Manajemen Gudang <span>85%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Pengarsipan Dokumen <span>95%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+          </li>
+          <li class="skill-item">
+            <span class="skill-label">Koordinasi Tim <span>88%</span></span>
+            <div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PENGALAMAN -->
+  <section class="section" id="pengalaman">
+    <p class="section-title">Riwayat Karier</p>
+    <h2 class="section-heading">Pengalaman Kerja</h2>
+    <div class="divider"></div>
+    <div class="timeline">
+
+      <!-- 1: CV Elang Bangun Bersama -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Admin Finance</div>
+            <div class="exp-period">Agu 2024 – Sekarang</div>
+          </div>
+          <div class="exp-company">CV Elang Bangun Bersama (Caiyida Group) · Jakarta Utara</div>
+          <ul class="exp-list">
+            <li>Mengelola seluruh siklus transaksi keuangan harian: pencatatan, verifikasi, dan rekonsiliasi kas serta rekening bank perusahaan</li>
+            <li>Menyusun rekapitulasi penjualan, kas, dan bank secara berkala sebagai bahan laporan keuangan manajemen</li>
+            <li>Membuat dan mendistribusikan invoice kepada klien, serta melaksanakan proses penagihan secara proaktif guna menjaga kelancaran arus kas</li>
+            <li>Memproses pembayaran invoice kepada pihak ketiga sesuai jadwal yang telah ditetapkan</li>
+            <li>Menghitung dan memproses insentif bulanan untuk tim teknisi dan sales berdasarkan data capaian kinerja</li>
+            <li>Menyusun kalkulasi harga proyek rental dan penjualan, serta bernegosiasi dengan tim sales untuk finalisasi kesepakatan komersial</li>
+            <li>Membuat voucher penerimaan dan pengeluaran kas/bank sebagai dokumentasi transaksi yang sah dan teraudit</li>
+            <li>Menginput dan memperbarui jadwal proyek di sistem Odoo ERP agar seluruh tim dapat memantau progres secara real-time</li>
+            <li>Memproses sales order dan rental order, termasuk penyusunan surat jalan dan dokumen pengiriman barang</li>
+            <li>Memantau arus keluar-masuk barang dari gudang, memastikan kesesuaian antara fisik dan catatan sistem</li>
+            <li>Melaksanakan stock opname secara periodik untuk menjaga akurasi data inventaris</li>
+            <li>Membuat desain layout proyek menggunakan SketchUp sebagai referensi visual bagi tim teknis di lapangan</li>
+            <li>Menyusun rekapitulasi progres proyek dan menyampaikan laporan kepada manajemen secara rutin</li>
+            <li>Mengelola dan mengembangkan website perusahaan untuk mendukung kebutuhan informasi dan pemasaran digital</li>
+            <li>Mengarsipkan seluruh dokumen penting perusahaan secara sistematis untuk memudahkan penelusuran dan keperluan audit</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 2: J&T Express -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Admin Operasional</div>
+            <div class="exp-period">Feb 2024 – Jul 2024</div>
+          </div>
+          <div class="exp-company">PT Lima Duapuluh Nusantara Ekspress (J&T Express) · Bekasi</div>
+          <ul class="exp-list">
+            <li>Melayani pelanggan yang datang ke outlet untuk pengiriman paket, memastikan proses berlangsung cepat dan akurat</li>
+            <li>Menginput dan memverifikasi resi pelanggan reguler serta mengelola alur paket dropoff sesuai prosedur operasional</li>
+            <li>Melakukan tracking resi secara aktif untuk memantau status pengiriman dan memberikan informasi terkini kepada pelanggan</li>
+            <li>Menerima, menghitung, dan memverifikasi uang setoran COD dari sprinter delivery, kemudian melaporkan dan menyetorkannya kepada atasan serta kantor pusat secara akurat</li>
+            <li>Menangani dan menyelesaikan eskalasi pengiriman bermasalah, termasuk paket stuck, over SLA, rusak, dan hilang, hingga resolusi tuntas</li>
+            <li>Memproses registrasi retur dan memastikan paket dikembalikan kepada pengirim sesuai prosedur</li>
+            <li>Menjadwalkan paket pickup reguler untuk sprinter pickup dan memastikan seluruh paket terangkut tepat waktu</li>
+            <li>Memonitor status paket outgoing dan mengidentifikasi potensi keterlambatan untuk ditindaklanjuti secara proaktif</li>
+            <li>Membuat kode tugas internal sebagai acuan penugasan operasional harian kepada tim sprinter</li>
+            <li>Menyusun laporan harian mencakup rekap paket pickup, tingkat keberhasilan pengiriman, dan absensi karyawan</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3: CV Faeyza -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">General Admin</div>
+            <div class="exp-period">Mei 2022 – Des 2023</div>
+          </div>
+          <div class="exp-company">CV Faeyza Abbasy Nugraha · Bekasi</div>
+          <ul class="exp-list">
+            <li>Menghitung dan melaporkan omzet penjualan marketplace secara rutin sebagai dasar evaluasi performa penjualan</li>
+            <li>Menetapkan harga jual yang kompetitif di marketplace dengan mempertimbangkan struktur biaya dan target margin keuntungan</li>
+            <li>Menghitung dan melaporkan insentif mingguan karyawan berdasarkan data penjualan dan capaian target yang telah ditetapkan</li>
+            <li>Memproses dan memantau seluruh hutang-piutang perusahaan, serta memastikan pencatatan dilakukan secara akurat dan tepat waktu</li>
+            <li>Membuat dan mengirimkan invoice penagihan kepada dropshiper/customer sesuai jadwal yang disepakati</li>
+            <li>Mengontrol dan memperbarui data aset perusahaan secara berkala untuk menjaga keakuratan laporan aset</li>
+            <li>Mengelola absensi karyawan dan menyusun rekap kehadiran sebagai bahan penghitungan penggajian</li>
+            <li>Mengontrol stok gudang secara rutin, termasuk pencatatan barang masuk dan keluar untuk mencegah selisih inventaris</li>
+            <li>Melakukan riset harga pasar untuk produk baru guna memastikan penetapan harga yang tepat dan berdaya saing</li>
+            <li>Mengontrol dan mencatat arus kas kantor secara harian, memastikan keseimbangan antara pemasukan dan pengeluaran operasional</li>
+            <li>Mengelola, mendokumentasikan, dan mengarsipkan seluruh dokumen penting perusahaan secara tertib dan mudah diakses</li>
+            <li>Merancang dan menjalankan program CSR perusahaan sebagai bagian dari strategi tanggung jawab sosial dan peningkatan citra perusahaan</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4: AEDEA Design Studio -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Admin Purchasing</div>
+            <div class="exp-period">Mar 2022 – Apr 2022</div>
+          </div>
+          <div class="exp-company">AEDEA Design Studio · Bekasi</div>
+          <ul class="exp-list">
+            <li>Mengelola pencatatan absensi harian tenaga tukang lapangan dan menghitung insentif berdasarkan jam kerja dan capaian pekerjaan</li>
+            <li>Melakukan pengadaan material bangunan sesuai kebutuhan lapangan, memastikan ketersediaan material tepat waktu agar proyek tidak terhambat</li>
+            <li>Memantau kinerja dan produktivitas tenaga lapangan secara langsung, serta mengoordinasikan kebutuhan teknis dengan supervisor lapangan</li>
+            <li>Berkoordinasi secara aktif dengan supervisor lapangan mengenai progres pekerjaan, kendala yang dihadapi, dan kebutuhan material yang mendesak</li>
+            <li>Mengelola penyimpanan dan pemeliharaan aset material bangunan serta peralatan proyek agar selalu dalam kondisi siap pakai</li>
+            <li>Mengidentifikasi dan menyeleksi vendor yang memenuhi kualifikasi teknis dan anggaran proyek</li>
+            <li>Bernegosiasi dengan vendor terkait harga, spesifikasi material, dan jadwal pengiriman untuk mengoptimalkan efisiensi biaya proyek</li>
+            <li>Menangani dan melaporkan permasalahan yang timbul di lapangan kepada atasan disertai solusi yang dapat ditindaklanjuti</li>
+            <li>Mengarsipkan seluruh invoice pembelian yang telah dibayarkan secara sistematis untuk keperluan dokumentasi dan audit</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5: Badru Store -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Admin Marketplace & Packer</div>
+            <div class="exp-period">Feb 2021 – Feb 2022</div>
+          </div>
+          <div class="exp-company">Toko Online Badru Store · Bekasi</div>
+          <ul class="exp-list">
+            <li>Mencetak dan memverifikasi resi pengiriman untuk memastikan setiap pesanan diproses dengan data yang akurat</li>
+            <li>Memantau dan memperbarui stok produk di seluruh platform marketplace secara real-time untuk menghindari overselling</li>
+            <li>Memberikan pelayanan pelanggan yang responsif di marketplace, menjawab pertanyaan dan menangani keluhan pembeli hingga tuntas</li>
+            <li>Menyelesaikan permasalahan transaksi pelanggan, termasuk klaim, pengembalian barang, dan dispute, sesuai kebijakan platform</li>
+            <li>Berpartisipasi aktif dalam event besar marketplace (Harbolnas, Flash Sale, Campaign Brand) untuk memaksimalkan visibilitas dan penjualan toko</li>
+            <li>Memasang, memantau, dan mengoptimalkan iklan berbayar serta program promosi di platform marketplace</li>
+            <li>Mengunggah produk baru dengan deskripsi, foto, dan kategori yang akurat untuk meningkatkan performa listing di mesin pencari marketplace</li>
+            <li>Mengelola dan memelihara akun marketplace, termasuk pembaruan tampilan toko sesuai tema event yang sedang berlangsung</li>
+            <li>Berkoordinasi dengan pihak ekspedisi dan kurir untuk memastikan seluruh resi diproses dan pengiriman berjalan lancar</li>
+            <li>Mengemas barang pesanan secara rapi dan aman sesuai standar pengemasan yang ditetapkan toko</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6: PT Denso Indonesia -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-role">Admin Purchasing (Magang)</div>
+            <div class="exp-period">Agu 2019 – Feb 2020</div>
+          </div>
+          <div class="exp-company">PT Denso Indonesia · Bekasi</div>
+          <ul class="exp-list">
+            <li>Mengelola proses penerimaan invoice dari supplier secara menyeluruh: penerimaan dokumen, pengecekan kelengkapan dan keakuratan data, penyusunan berdasarkan prioritas, hingga penginputan ke dalam sistem purchasing perusahaan</li>
+            <li>Mengajukan dokumen invoice kepada manajer untuk mendapatkan persetujuan sesuai alur otorisasi yang berlaku</li>
+            <li>Meneruskan invoice yang telah disetujui ke divisi finance untuk diproses pembayarannya sesuai jadwal jatuh tempo</li>
+            <li>Melaksanakan pengarsipan sistematis dan terstruktur untuk seluruh dokumen penting di departemen purchasing, memastikan kemudahan penelusuran saat dibutuhkan</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERTIFIKASI -->
+  <section class="section" id="sertifikasi">
+    <p class="section-title">Kredensial</p>
+    <h2 class="section-heading">Sertifikasi & Lisensi</h2>
+    <div class="divider"></div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Administrasi Profesional</div>
+          <div class="cert-issuer">BNSP — Kompeten</div>
+          <div class="cert-year">2020</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Tenaga Administrasi Kepegawaian</div>
+          <div class="cert-issuer">BNSP — Kompeten</div>
+          <div class="cert-year">2019</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Uji Kompetensi Komputer</div>
+          <div class="cert-issuer">BNSP — Kompeten</div>
+          <div class="cert-year">2018</div>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🌐</div>
+        <div>
+          <div class="cert-name">TOEIC Score 510 (Level B1)</div>
+          <div class="cert-issuer">ETS — English Proficiency</div>
+          <div class="cert-year">2020</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK -->
+  <section class="section" id="kontak">
+    <div class="contact-card">
+      <h3>Siap Berkolaborasi?</h3>
+      <p>Saya terbuka untuk proyek freelance, part-time, maupun kerja sama jangka panjang. Hubungi saya dan kita diskusikan kebutuhan Anda!</p>
+      <div class="contact-links">
+        <a href="mailto:kartikafiah@gmail.com" class="contact-link">✉️ kartikafiah@gmail.com</a>
+        <a href="https://wa.me/6285156503558" class="contact-link">📱 WhatsApp</a>
+        <a href="https://linkedin.com/in/kartika-islamianingsih" class="contact-link">💼 LinkedIn</a>
+      </div>
+      <a href="mailto:kartikafiah@gmail.com" class="btn-primary">Kirim Pesan Sekarang</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 Kartika Afiah Islamianingsih &nbsp;·&nbsp; Business Admin & Finance Freelancer &nbsp;·&nbsp; Bekasi, Indonesia</p>
+</footer>
+
+</body>
+</html>
