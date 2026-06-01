@@ -52,15 +52,6 @@
     background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     pointer-events: none;
   }
-  .hero-avatar {
-    width: 96px; height: 96px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--blue-200), var(--teal-400));
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 32px; font-weight: 700; color: white;
-    margin-bottom: 20px; border: 4px solid rgba(255,255,255,0.25);
-    position: relative; z-index: 1;
-    letter-spacing: -1px;
-  }
   .hero h1 {
     font-size: clamp(28px, 5vw, 42px); font-weight: 700; color: white;
     letter-spacing: -0.5px; margin-bottom: 8px; position: relative; z-index: 1;
@@ -185,6 +176,85 @@
   }
   .contact-link:hover { background: rgba(255,255,255,0.2); }
 
+  /* CONTOH KERJA – CAROUSEL */
+  .carousel-wrap { position: relative; }
+  .carousel-track-outer {
+    overflow: hidden; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .carousel-track {
+    display: flex; transition: transform .45s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+  }
+  .carousel-slide {
+    min-width: 100%; display: flex; gap: 0;
+    flex-direction: column;
+    background: white; border-radius: var(--radius-lg); overflow: hidden;
+  }
+  .carousel-img-box {
+    width: 100%; background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; aspect-ratio: 16/9; position: relative;
+  }
+  .carousel-img-box img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top;
+    display: block;
+  }
+  /* placeholder kalau gambar belum ada */
+  .carousel-placeholder {
+    width: 100%; height: 100%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(135deg, var(--blue-50), var(--gray-100));
+    color: var(--blue-400);
+  }
+  .carousel-placeholder .ph-icon { font-size: 52px; }
+  .carousel-placeholder .ph-label { font-size: 13px; color: var(--gray-400); }
+
+  .carousel-info {
+    padding: 20px 24px 24px; border-top: 1px solid var(--gray-200);
+  }
+  .carousel-info-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .carousel-badge {
+    background: var(--blue-600); color: white; font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+  }
+  .carousel-counter { font-size: 12px; color: var(--gray-400); margin-left: auto; }
+  .carousel-title { font-size: 17px; font-weight: 700; color: var(--gray-800); margin-bottom: 6px; }
+  .carousel-desc { font-size: 13.5px; color: var(--gray-600); line-height: 1.65; margin-bottom: 14px; }
+  .carousel-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .carousel-tag { font-size: 11px; background: var(--blue-50); color: var(--blue-600); padding: 3px 10px; border-radius: 99px; font-weight: 500; }
+
+  /* nav buttons */
+  .carousel-btn {
+    position: absolute; top: 36%; transform: translateY(-50%);
+    width: 40px; height: 40px; border-radius: 50%;
+    background: white; border: 1.5px solid var(--gray-200);
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 18px; color: var(--blue-700);
+    transition: background .2s, box-shadow .2s; z-index: 10;
+    user-select: none;
+  }
+  .carousel-btn:hover { background: var(--blue-600); color: white; box-shadow: 0 4px 16px rgba(24,95,165,.25); }
+  .carousel-btn-prev { left: -20px; }
+  .carousel-btn-next { right: -20px; }
+
+  /* dots */
+  .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 18px; }
+  .carousel-dot {
+    width: 8px; height: 8px; border-radius: 99px;
+    background: var(--gray-200); cursor: pointer;
+    transition: background .25s, width .25s;
+  }
+  .carousel-dot.active { background: var(--blue-600); width: 22px; }
+
+  .portfolio-notice {
+    background: var(--blue-50); border: 1px solid var(--blue-100);
+    border-radius: var(--radius-md); padding: 14px 18px;
+    font-size: 13px; color: var(--blue-800); display: flex; align-items: flex-start; gap: 10px;
+    margin-bottom: 24px;
+  }
+
   /* FOOTER */
   footer { text-align: center; padding: 28px 2rem; font-size: 13px; color: var(--gray-400); border-top: 1px solid var(--gray-200); background: white; }
 
@@ -208,13 +278,13 @@
     <li><a href="#layanan">Layanan</a></li>
     <li><a href="#pengalaman">Pengalaman</a></li>
     <li><a href="#sertifikasi">Sertifikasi</a></li>
+    <li><a href="#contoh-kerja">Contoh Kerja</a></li>
   </ul>
   <a href="#kontak" class="nav-cta">Hubungi Saya</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-avatar">KA</div>
   <h1>Kartika Afiah Islamianingsih</h1>
   <p class="hero-subtitle">Admin Finace & Freelancer &nbsp;·&nbsp; Bekasi, Jawa Barat</p>
   <div class="hero-badges">
@@ -669,6 +739,179 @@
 
     </div>
   </section>
+
+  <!-- CONTOH KERJA -->
+  <section class="section" id="contoh-kerja">
+    <p class="section-title">Portofolio</p>
+    <h2 class="section-heading">Contoh Lembar Kerja</h2>
+    <div class="divider"></div>
+
+    <div class="portfolio-notice">
+      <span style="font-size:16px;flex-shrink:0">📸</span>
+      <span>Screenshot contoh laporan keuangan yang saya buat adalah data fiktif untuk keperluan portofolio. Semua laporan yang saya kerjakan dapat didiskusikan sesuai kebutuhan Anda. Geser kanan-kiri untuk melihat semua contoh laporan.</span>
+    </div>
+
+    <div class="carousel-wrap">
+
+      <!-- Tombol kiri -->
+      <button class="carousel-btn carousel-btn-prev" onclick="carouselMove(-1)" aria-label="Sebelumnya">&#8249;</button>
+
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="carouselTrack">
+
+          <!-- Slide 1: General Ledger -->
+          <div class="carousel-slide">
+            <div class="carousel-img-box">
+              <img src="images/screenshot-gl.jpg" alt="Screenshot General Ledger"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="carousel-placeholder" style="display:none">
+                <div class="ph-icon">📒</div>
+                <div class="ph-label">Tambahkan screenshot: images/screenshot-gl.jpg</div>
+              </div>
+            </div>
+            <div class="carousel-info">
+              <div class="carousel-info-top">
+                <span class="carousel-badge">Laporan 1 / 4</span>
+                <span class="carousel-counter" id="dotCounter">● ● ● ●</span>
+              </div>
+              <div class="carousel-title">General Ledger / Buku Besar</div>
+              <div class="carousel-desc">Pencatatan seluruh transaksi per akun (Kas, Piutang Usaha, Pendapatan) lengkap dengan nomor bukti, nomor jurnal, kolom debet/kredit, dan saldo berjalan.</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Excel</span>
+                <span class="carousel-tag">Akuntansi</span>
+                <span class="carousel-tag">Buku Besar</span>
+                <span class="carousel-tag">Q1 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Laporan Penjualan -->
+          <div class="carousel-slide">
+            <div class="carousel-img-box">
+              <img src="images/screenshot-penjualan.jpg" alt="Screenshot Laporan Penjualan"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="carousel-placeholder" style="display:none">
+                <div class="ph-icon">📈</div>
+                <div class="ph-label">Tambahkan screenshot: images/screenshot-penjualan.jpg</div>
+              </div>
+            </div>
+            <div class="carousel-info">
+              <div class="carousel-info-top">
+                <span class="carousel-badge">Laporan 2 / 4</span>
+              </div>
+              <div class="carousel-title">Laporan Penjualan</div>
+              <div class="carousel-desc">Rekap penjualan bulanan vs target, analisis HPP & laba kotor per produk (8 produk), perhitungan margin, dan persentase pencapaian target.</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Sales Report</span>
+                <span class="carousel-tag">HPP & Margin</span>
+                <span class="carousel-tag">Target vs Aktual</span>
+                <span class="carousel-tag">Q1 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3: Kas & Bank -->
+          <div class="carousel-slide">
+            <div class="carousel-img-box">
+              <img src="images/screenshot-kas-bank.jpg" alt="Screenshot Laporan Kas Bank"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="carousel-placeholder" style="display:none">
+                <div class="ph-icon">🏦</div>
+                <div class="ph-label">Tambahkan screenshot: images/screenshot-kas-bank.jpg</div>
+              </div>
+            </div>
+            <div class="carousel-info">
+              <div class="carousel-info-top">
+                <span class="carousel-badge">Laporan 3 / 4</span>
+              </div>
+              <div class="carousel-title">Laporan Kas & Bank</div>
+              <div class="carousel-desc">Buku kas harian & buku bank (Bank BRI) lengkap dengan kategori transaksi, arus masuk/keluar, saldo berjalan, dan rekonsiliasi akhir bulan.</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">Cash Flow</span>
+                <span class="carousel-tag">Rekonsiliasi</span>
+                <span class="carousel-tag">Buku Bank</span>
+                <span class="carousel-tag">Maret 2025</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4: AR/AP -->
+          <div class="carousel-slide">
+            <div class="carousel-img-box">
+              <img src="images/screenshot-ar-ap.jpg" alt="Screenshot Laporan AR AP"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="carousel-placeholder" style="display:none">
+                <div class="ph-icon">🔄</div>
+                <div class="ph-label">Tambahkan screenshot: images/screenshot-ar-ap.jpg</div>
+              </div>
+            </div>
+            <div class="carousel-info">
+              <div class="carousel-info-top">
+                <span class="carousel-badge">Laporan 4 / 4</span>
+              </div>
+              <div class="carousel-title">Laporan Hutang & Piutang (AR/AP)</div>
+              <div class="carousel-desc">Daftar piutang customer & hutang supplier dengan status warna otomatis (lunas / segera jatuh tempo / belum jatuh tempo), umur tagihan, dan posisi bersih AR–AP.</div>
+              <div class="carousel-tags">
+                <span class="carousel-tag">AR/AP</span>
+                <span class="carousel-tag">Piutang Usaha</span>
+                <span class="carousel-tag">Hutang Usaha</span>
+                <span class="carousel-tag">Per 31 Mar 2025</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /carousel-track -->
+      </div><!-- /carousel-track-outer -->
+
+      <!-- Tombol kanan -->
+      <button class="carousel-btn carousel-btn-next" onclick="carouselMove(1)" aria-label="Berikutnya">&#8250;</button>
+
+    </div><!-- /carousel-wrap -->
+
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots">
+      <div class="carousel-dot active" onclick="carouselGo(0)"></div>
+      <div class="carousel-dot" onclick="carouselGo(1)"></div>
+      <div class="carousel-dot" onclick="carouselGo(2)"></div>
+      <div class="carousel-dot" onclick="carouselGo(3)"></div>
+    </div>
+
+  </section>
+
+  <script>
+    (function() {
+      var current = 0;
+      var total = 4;
+      var track = document.getElementById('carouselTrack');
+      var dots  = document.querySelectorAll('.carousel-dot');
+
+      function update() {
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dots.forEach(function(d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      window.carouselMove = function(dir) {
+        current = (current + dir + total) % total;
+        update();
+      };
+
+      window.carouselGo = function(idx) {
+        current = idx;
+        update();
+      };
+
+      // swipe support (mobile)
+      var startX = 0;
+      var el = document.querySelector('.carousel-track-outer');
+      el.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive:true});
+      el.addEventListener('touchend', function(e) {
+        var dx = e.changedTouches[0].clientX - startX;
+        if (Math.abs(dx) > 40) carouselMove(dx < 0 ? 1 : -1);
+      }, {passive:true});
+    })();
+  </script>
 
   <!-- KONTAK -->
   <section class="section" id="kontak">
